@@ -18,7 +18,7 @@ X_test=iris.iloc[split_at:,:-1]
 y_test=iris.iloc[split_at:,-1]
 
 model=LogisticRegression()
-model.fit_non_regularized(X_train,y_train,n_iter=1000,batch_size=X_train.shape[0])
+model.fit_autograd(X_train,y_train,n_iter=1000,batch_size=X_train.shape[0],regularise='l1',regularise_value=0.01)
 print(model._LogisticRegression__coef)
 y_hat=model.predict(X_test)
 print("Accuracy: ",accuracy(y_hat,y_test))
