@@ -2,6 +2,7 @@ from LogisticRegression.LogisticRegression import LogisticRegression
 from matrix import *
 import numpy as np
 import pandas as pd 
+np.random.seed(40)
 
 da=pd.read_csv('iris.csv')
 col1=da["sepal_width"]
@@ -18,7 +19,7 @@ X_test=iris.iloc[split_at:,:-1]
 y_test=iris.iloc[split_at:,-1]
 
 model=LogisticRegression()
-model.fit_autograd(X_train,y_train,n_iter=1000,batch_size=X_train.shape[0],regularise='l1',regularise_value=0.01)
+model.fit_autograd(X_train,y_train,n_iter=1000,batch_size=X_train.shape[0],regularise='None',regularise_value=0.01)
 print(model._LogisticRegression__coef)
 y_hat=model.predict(X_test)
 print("Accuracy: ",accuracy(y_hat,y_test))

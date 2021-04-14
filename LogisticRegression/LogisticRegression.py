@@ -90,7 +90,7 @@ class LogisticRegression():
         elif(regularise=='l1'):
             gr=grad(lossl1)
         elif(regularise=='l2'):
-            gr=grad(lossnone)
+            gr=grad(lossl2)
         else:
             print("Incorrect Regularise Type")
             exit()            
