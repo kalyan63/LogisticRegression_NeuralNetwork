@@ -1,7 +1,6 @@
 import autograd.numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-import math
 from autograd import grad
 from autograd.numpy import log,exp
 
@@ -24,12 +23,11 @@ class LogisticRegression():
     def __init__(self,intercept=True):
         self.__coef=None
         self.intercept=intercept
-        self.__attribute=None
 
     def __sigmoid(self,z):
-        return (1/(1+math.exp(-z)))
+        return (1/(1+exp(-z)))
 
-    def fit_non_regularized(self,X,y,batch_size=1,n_iter=100,lr=0.01,lr_type='constant'):
+    def fit_Vectorized(self,X,y,batch_size=1,n_iter=100,lr=0.01,lr_type='constant'):
         if(batch_size>X.shape[0]):
             print("Batch size has exceded the size of X")
             quit()    

@@ -19,8 +19,8 @@ X_test=iris.iloc[split_at:,:-1]
 y_test=iris.iloc[split_at:,-1]
 
 model=LogisticRegression()
-model.fit_autograd(X_train,y_train,n_iter=1000,batch_size=X_train.shape[0],regularise='None',regularise_value=0.01)
-print(model._LogisticRegression__coef)
+model.fit_autograd(X_train,y_train,n_iter=1000,batch_size=1,regularise='l1',regularise_value=0.1)
+# model.fit_Vectorized(X_train,y_train,n_iter=1000,batch_size=1)
 y_hat=model.predict(X_test)
 print("Accuracy: ",accuracy(y_hat,y_test))
 model.plot_surface(X_test,y_test)
