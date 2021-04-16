@@ -6,7 +6,7 @@ import pandas as pd
 cancer=load_breast_cancer(as_frame=True)
 data=cancer.data
 data["Truth"]=cancer.target
-data=data.iloc[:,[5,6,7,8,9,10,-1]]
+# data=data.iloc[:,[5,6,7,8,9,10,-1]]
 data=data.sample(frac=1).reset_index(drop=True)
 split_at=int(0.6*(data.shape[0]))
 X_train=data.iloc[:split_at,:-1]

@@ -35,7 +35,7 @@ class LogisticRegression():
         self.__attribute={}
         X=np.array(X)
         X_intercept=np.ones(X.shape[0])
-        self.__coef=np.zeros(X.shape[1]+1)
+        self.__coef=np.ones(X.shape[1]+1)
         if(not self.intercept):
             X_intercept=np.zeros(X.shape[0])
         X_arr=np.vstack((X_intercept,X.T)).T
@@ -95,7 +95,7 @@ class LogisticRegression():
         self.__attribute={}
         X=np.array(X)
         X_intercept=np.ones(X.shape[0])
-        self.__coef=np.zeros(X.shape[1]+1)
+        self.__coef=np.ones(X.shape[1]+1)
         if(not self.intercept):
             X_intercept=np.zeros(X.shape[0])
         X_arr=np.vstack((X_intercept,X.T)).T

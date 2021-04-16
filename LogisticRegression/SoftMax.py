@@ -5,6 +5,7 @@ from matplotlib.pyplot import axis
 import pandas as pd
 from autograd.numpy import exp,log
 from autograd import grad
+import matplotlib.pyplot as plt
 
 def lossSoftmax(w,X,y):
     big=np.matmul(X,w.T)
@@ -59,7 +60,8 @@ class Softmax():
             X_intercept=np.zeros(X.shape[0])
         X_arr=np.vstack((X_intercept,X.T)).T
         y_arr=self.__mapAttributes(y)
-        self.__coef=np.zeros((len(self.__att),X.shape[1]+1))   
+        self.__coef=np.ones((len(self.__att),X.shape[1]+1))   
+        # self.__coef=np.zeros((len(self.__att),X.shape[1]+1))   
         if(lr_type=='constant'):
             iter=0
             bs=0
@@ -161,16 +163,23 @@ class Softmax():
             return i2n(np.argmax(result,axis=1))
     
     def confusion_matrix(self,X,y):
-        pass
+        conf=[[0]*len(self.__att) for i in range(len(self.__att))]
+        y_hat=self.predict(X)
+        y=np.array(y)
+        for i in range(len(y_hat)):
+            conf[y_hat[i]][y[i]]+=1
+        print(conf)
+        plt.imshow(conf)    
+        plt.show()
 
-X1=np.array([[1.0],[1.0],[4.0],[5.0],[6.0],[10.0],[13.0]])
-y1=np.array(["kal","kal","ram","ram","ram","bhim","bhim"])
-b1=Softmax()
+# X1=np.array([[1.0],[1.0],[4.0],[5.0],[6.0],[10.0],[13.0]])
+# y1=np.array(["kal","kal","ram","ram","ram","bhim","bhim"])
+# b1=Softmax()
 
-b1.fit_vectorized(X1,y1,n_iter=500)
-print(b1._Softmax__coef)
-print(b1.predict(np.array([[1],[4],[4],[3],[14],[5]])))
-a=Softmax()
-a.fit_autograd(X1,y1,n_iter=1000)
-print(a._Softmax__coef)
-print(a.predict(np.array([[1],[4],[4],[3],[14],[5]])))
+# b1.fit_vectorized(X1,y1,n_iter=500)
+# print(b1._Softmax__coef)
+# print(b1.predict(np.array([[1],[4],[4],[3],[14],[5]])))
+# a=Softmax()
+# a.fit_autograd(X1,y1,n_iter=1000)
+# print(a._Softmax__coef)
+# print(a.predict(np.array([[1],[4],[4],[3],[14],[5]])))
