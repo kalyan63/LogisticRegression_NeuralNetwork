@@ -28,4 +28,8 @@
 
     > The most confused number was 8 with 2,5,9
 
-    > 6 was less confused
+    > 6 and 0 was less confused
+
+4. **Plotting reduced features of digits**
+
+    >!['Reduced plot'](q3_pca.png)
