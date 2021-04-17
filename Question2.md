@@ -1,7 +1,37 @@
 ## Results of Question 2: 
 
 1. **Result of L1 Regularization after Nested Cross Validation**
+
+    > Max acuracy for each of 5 folds is:
+
+        > At fold =0:
+            Accuracy=1.0 for Regularize Value=0.01
+        > At fold =1:
+            Accuracy=0.9523809523809523 for Regularize Value=0.01
+        > At fold =2:
+            Accuracy=0.9523809523809523 for Regularize Value=0.01
+        > At fold =3:
+            Accuracy=1.0 for Regularize Value=0.08
+        > At fold =4:
+            Accuracy=0.9047619047619048 for Regularize Value=0.01
+        
 2. **Resukt of L2 Regularization after Nested Cross Validation**
+
+    > Max acuracy for each of 5 folds is:
+
+        > At fold =0:
+            Accuracy=1.0 for Regularize Value=0.01
+        > At fold =1:
+            Accuracy=0.9523809523809523 for Regularize Value=0.01
+        > At fold =2:
+            Accuracy=0.9523809523809523 for Regularize Value=0.01
+        > At fold =3:
+            Accuracy=1.0 for Regularize Value=0.03
+        > At fold =4:
+            Accuracy=0.9523809523809523 for Regularize Value=0.06
+        
+
+
 3. **Undersatnding Feature Imporatnce**
 
     > For batch size=10 and iteration =1000 for L1 regularization the results are: 

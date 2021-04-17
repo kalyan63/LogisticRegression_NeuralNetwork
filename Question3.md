@@ -16,5 +16,8 @@
 
 3. **Confusion Matrix:**
 
-    > Image of Confusion Matrix: 
-        >!['Confusion '](q3.png)
+    > **Image of Confusion Matrix:** 
+        
+    >!['Confusion '](q3.png)
+
+    > The most confused number was 1 

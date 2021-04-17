@@ -12,6 +12,69 @@ iris=da.iloc[:,:-1]
 iris["Truth"]=label
 iris=iris.sample(frac=1).reset_index(drop=True)
 split_at=int(0.7*(iris.shape[0]))
+iris_train=iris.iloc[:split_at,:]
+iris_test=iris.iloc[split_at:,:]
+
+#Nested Cross validation
+#For l1 regularization
+fold=int(len(iris_train)*0.2)
+opt_rg={0:dict(),1:dict(),2:dict(),3:dict(),4:dict()}
+for i in range(5):
+    split_x1=i*fold
+    split_x2=split_x1+fold
+    X_train_1=iris_train.iloc[:split_x1,:-1].append(iris_train.iloc[split_x2:,:-1])
+    y_train_1=iris_train.iloc[:split_x1,-1].append(iris_train.iloc[split_x2:,-1])
+    X_validate=iris_train.iloc[split_x1:split_x2,:-1]
+    y_validate=iris_train.iloc[split_x1:split_x2,-1]
+    max_accuracy=0
+    rg_value=0.01
+    print("\nRound at {} ".format(i))
+    for j in range(1,101):
+        if(j%20==0):
+            print("Going at {} ".format(j),end=" ")
+        model=LogisticRegression()
+        model.fit_autograd(X_train_1,y_train_1,batch_size=10,n_iter=1000,regularise='l1',regularise_value=j*rg_value)
+        y_hat=model.predict(X_validate)
+        score=accuracy(y_hat,y_validate)
+        if(max_accuracy<score):
+            opt_rg[i]["RegularizeValue"]=j*rg_value
+            opt_rg[i]["Accuracy"]=score
+            max_accuracy=score  
+print("For L1 Regularization")                                
+for i in range(len(opt_rg)):
+    print("At fold ={}:\n\tAccuracy={} for Regularize Value={}".format(i,opt_rg[i]["Accuracy"],opt_rg[i]["RegularizeValue"]))
+
+
+#For l2 regularization
+fold=int(len(iris_train)*0.2)
+opt_rg={0:dict(),1:dict(),2:dict(),3:dict(),4:dict()}
+for i in range(5):
+    split_x1=i*fold
+    split_x2=split_x1+fold
+    X_train_1=iris_train.iloc[:split_x1,:-1].append(iris_train.iloc[split_x2:,:-1])
+    y_train_1=iris_train.iloc[:split_x1,-1].append(iris_train.iloc[split_x2:,-1])
+    X_validate=iris_train.iloc[split_x1:split_x2,:-1]
+    y_validate=iris_train.iloc[split_x1:split_x2,-1]
+    max_accuracy=0
+    rg_value=0.01
+    print("\nRound at {} ".format(i))
+    for j in range(1,101):
+        if(j%20==0):
+            print("Going at {} ".format(j),end=" ")
+        model=LogisticRegression()
+        model.fit_autograd(X_train_1,y_train_1,batch_size=10,n_iter=1000,regularise='l2',regularise_value=j*rg_value)
+        y_hat=model.predict(X_validate)
+        score=accuracy(y_hat,y_validate)
+        if(max_accuracy<score):
+            opt_rg[i]["RegularizeValue"]=j*rg_value
+            opt_rg[i]["Accuracy"]=score
+            max_accuracy=score  
+print("For L2 Regularization")                                
+for i in range(len(opt_rg)):
+    print("At fold ={}:\n\tAccuracy={} for Regularize Value={}".format(i,opt_rg[i]["Accuracy"],opt_rg[i]["RegularizeValue"]))
+
+
+#For impotance of feature using L1 Regularization
 X_train=iris.iloc[:split_at,:-1]
 y_train=iris.iloc[:split_at,-1]
 X_test=iris.iloc[split_at:,:-1]
