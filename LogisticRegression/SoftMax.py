@@ -4,16 +4,14 @@ from autograd.numpy.linalg import T
 from matplotlib.pyplot import axis
 import pandas as pd
 from autograd.numpy import exp,log
-from autograd import grad
+from autograd import elementwise_grad as grad
 import matplotlib.pyplot as plt
 
 def lossSoftmax(w,X,y):
-    big=np.matmul(X,w.T)
-    big=exp(big/np.linalg.grad_norm(big))
-    sum1=np.sum(np.matmul(X,w.T),axis=1)
-    sum1=exp(sum1/np.linalg.grad_norm(sum1))
+    big=exp(np.matmul(X,w.T))
+    sum1=np.sum(exp(np.matmul(X,w.T)),axis=1)
     sum1=np.tile(sum1,(len(big[0]),1)).T
-    return np.sum(y*(log(sum1)-log(big)))
+    return np.sum(y*log(big/sum1))
 
 class Softmax():
     def __init__(self,intercept=True):
@@ -111,7 +109,7 @@ class Softmax():
             X_intercept=np.zeros(X.shape[0])
         X_arr=np.vstack((X_intercept,X.T)).T
         y_arr=self.__mapAttributes(y)
-        self.__coef=np.zeros((len(self.__att),X.shape[1]+1))   
+        self.__coef=np.ones((len(self.__att),X.shape[1]+1))   
         gd=grad(lossSoftmax)
         y_arr=self.__onehot(y_arr)
         if(lr_type=='constant'):
@@ -122,9 +120,7 @@ class Softmax():
                 iter+=1
                 X_arr_b=X_arr[bs:be]
                 y_arr_b=y_arr[bs:be]
-                self.__coef=self.__coef-lr*gd(self.__coef,X_arr_b,y_arr_b)
-                # for i in range(len(self.__coef)):
-                #     self.__coef[i]=self.__coef[i]+lr*np.sum(X_arr_b*np.tile(np.where(y_arr_b==i,1,0)-soft_values[:,i],(len(self.__coef[0]),1)).T,axis=0)
+                self.__coef=self.__coef+lr*gd(self.__coef,X_arr_b,y_arr_b)
                 if(be>=X.shape[0]):
                     bs=0
                     be=bs+batch_size
@@ -139,9 +135,7 @@ class Softmax():
                 iter+=1
                 X_arr_b=X_arr[bs:be]
                 y_arr_b=y_arr[bs:be]
-                soft_values=self.predict(X_arr_b[:,1:],ret="Values")
-                for i in range(len(self.__coef)):
-                    self.__coef[i]=self.__coef[i]+(lr/iter)*np.sum(X_arr_b*np.tile(np.where(y_arr_b==i,1,0)-soft_values[:,i],(len(self.__coef[0]),1)).T,axis=0)
+                self.__coef=self.__coef+lr*gd(self.__coef,X_arr_b,y_arr_b)
                 if(be>=X.shape[0]):
                     bs=0
                     be=bs+batch_size
@@ -171,15 +165,3 @@ class Softmax():
         print(conf)
         plt.imshow(conf)    
         plt.show()
-
-# X1=np.array([[1.0],[1.0],[4.0],[5.0],[6.0],[10.0],[13.0]])
-# y1=np.array(["kal","kal","ram","ram","ram","bhim","bhim"])
-# b1=Softmax()
-
-# b1.fit_vectorized(X1,y1,n_iter=500)
-# print(b1._Softmax__coef)
-# print(b1.predict(np.array([[1],[4],[4],[3],[14],[5]])))
-# a=Softmax()
-# a.fit_autograd(X1,y1,n_iter=1000)
-# print(a._Softmax__coef)
-# print(a.predict(np.array([[1],[4],[4],[3],[14],[5]])))
