@@ -3,20 +3,20 @@
 1. **Result for Vectorized Logistic Regression on Breast Cancer Data:** 
     > For Vectorized and Batch size=100 (split=0.6)
         
-        > Accuracy for iteration=100 is: 0.32894736842105265 
-        > Accuracy for iteration=1000 is: 0.9429824561403509 
-        > Accuracy for iteration=2000 is: 0.8771929824561403 
-        > Accuracy for iteration=3000 is: 0.8070175438596491 
-        > Accuracy for iteration=10000 is: 0.9517543859649122 
+        > Accuracy for iteration=100 is: 0.9035087719298246
+        > Accuracy for iteration=1000 is: 0.956140350877193
+        > Accuracy for iteration=2000 is: 0.9605263157894737
+        > Accuracy for iteration=3000 is: 0.9649122807017544 
+        > Accuracy for iteration=10000 is: 0.9692982456140351 
 
 2. **Result for Autograd Logistic Regression on Breast Cancer Data:**
     >For Autograd and Batch size=300 and autograd (Just considered 6 features due to autograd limit)
 
-        > Accuracy for iteration=100 is: 0.618421052631579
-        > Accuracy for iteration=1000 is: 0.6228070175438597
-        > Accuracy for iteration=5000 is: 0.75
-        > Accuracy for iteration=20000 is: 0.8114035087719298
-        > Accuracy for iteration=30000 is: 0.8157894736842105
+        > Accuracy for iteration=100 is: 0.6447368421052632
+        > Accuracy for iteration=1000 is: 0.5219298245614035
+        > Accuracy for iteration=5000 is: 0.8947368421052632
+        > Accuracy for iteration=10000 is: 0.9166666666666666
+        > Accuracy for iteration=20000 is: 0.9342105263157895
 
 3. **Plot for Decision boundry for breast cancer data**
     > Using vectorized: 

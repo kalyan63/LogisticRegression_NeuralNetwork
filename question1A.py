@@ -3,10 +3,14 @@ from LogisticRegression.LogisticRegression import LogisticRegression
 from matrix import *
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+
+np.random.seed(24)
+scalar=MinMaxScaler()
 cancer=load_breast_cancer(as_frame=True)
 data=cancer.data
+data[list(data)]=scalar.fit_transform(data)
 data["Truth"]=cancer.target
-# data=data.iloc[:,[5,6,7,8,9,10,-1]]
 data=data.sample(frac=1).reset_index(drop=True)
 split_at=int(0.6*(data.shape[0]))
 X_train=data.iloc[:split_at,:-1]
@@ -24,7 +28,7 @@ for j in [100,1000,2000,3000,10000]:
 
 # Autograd
 print("\n For Autograd and Batch size=300")
-for j in [100,1000,5000,20000,30000]:
+for j in [100,1000,5000,10000,20000]:
     model2=LogisticRegression()
     model2.fit_autograd(X_train,y_train,batch_size=300,n_iter=j,regularise='None')
     y_hat=model2.predict(X_test)
