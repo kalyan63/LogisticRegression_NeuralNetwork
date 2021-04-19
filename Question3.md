@@ -33,3 +33,7 @@
 4. **Plotting reduced features of digits**
 
     >!['Reduced plot'](q3_pca.png)
+
+    > From the plot we can clearly explain the confusion matrix. 
+    
+    > We can clearly see which digits are more overlapping and which are not. 

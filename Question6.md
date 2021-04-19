@@ -2,7 +2,7 @@
 
 1. **Classification of digts data set of Sklearn**
     
-    > Just used input layer and a output layer with sigmoid activation. 
+    > Just used input layer and a output layer with sigmoid activation and loss='Cross Entropy'
 
     > Results : 
 
