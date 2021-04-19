@@ -11,6 +11,7 @@ def accuracy(y_hat, y):
     return correct_pridiction/total        
 
 def precision(y_hat, y, cls):
+    assert(y_hat.size == y.size)
     predict=list(y_hat)
     Gtruth=list(y)
     Trueclass=0
@@ -23,6 +24,7 @@ def precision(y_hat, y, cls):
     return Trueclass/allclass            
 
 def recall(y_hat, y, cls):
+    assert(y_hat.size == y.size)
     predict=list(y_hat)
     Gtruth=list(y)
     Trueclass=0
@@ -33,3 +35,15 @@ def recall(y_hat, y, cls):
                 Trueclass+=1
             allclass+=1
     return Trueclass/allclass
+
+def rmse(y_hat, y):
+    assert(y_hat.size == y.size)
+    predict=np.array(y_hat)
+    Gtruth=np.array(y)
+    return (np.sqrt(np.mean((predict-Gtruth)**2)))
+
+def mae(y_hat, y):
+    assert(y_hat.size == y.size)
+    predict=np.array(y_hat)
+    Gtruth=np.array(y)
+    return (np.mean(abs(predict-Gtruth)))

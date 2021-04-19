@@ -2,6 +2,7 @@ import autograd.numpy as np
 from autograd.numpy import exp,log,abs
 from autograd import elementwise_grad as grad1
 
+np.random.seed(24)
 #Activation Functions
 def relu(a):
     return np.where(a>0,a,0)
@@ -14,12 +15,12 @@ activation_main={'r':relu,'i':identity,'s':sigmoid}
 #End of Activation functions
 
 #Loss funtions
-def mse(W,A,layer,activation,y):
+def mae(W,A,layer,activation,y):
     for i in range(1,len(layer)):
         A['z_'+str(i)]=np.matmul(A['a_'+str(i-1)],W['w_'+str(i)].T)+np.tile(W['b_'+str(i)],(len(A['a_0']),1))
         A['a_'+str(i)]=activation_main[activation[i-1]](A['z_'+str(i)])
-    return 1*np.sum((y-A['a_'+str(len(layer)-1)])**2)
-MSE=grad1(mse)
+    return 1*np.sum(abs(y-A['a_'+str(len(layer)-1)]))
+MAE=grad1(mae)
 
 def cross_entropy(W,A,layer,activation,y):
     for i in range(1,len(layer)):
@@ -63,10 +64,10 @@ class NN():
 
     def back_prop(self,y,lr,loss):
         Trained_weight=None
-        if(loss=='mse'):
-            Trained_weight=MSE(self.WB,self.AZ,self.layers,self.activation,y)
+        if(loss=='mae'):
+            Trained_weight=MAE(self.WB,self.AZ,self.layers,self.activation,y)
         else:
-            Trained_weight=cross_entropy(self.WB,self.AZ,self.layers,self.activation,y)
+            Trained_weight=CrossEntropy(self.WB,self.AZ,self.layers,self.activation,y)   
         for i in range(1,len(self.layers)):
             self.WB['w_'+str(i)]-=lr*Trained_weight['w_'+str(i)]
             self.WB['b_'+str(i)]-=lr*Trained_weight['b_'+str(i)]
@@ -74,7 +75,3 @@ class NN():
     def predict(self,X):
         return self.forward_prop(X)
 
-# model=NN()
-# model.add_layers(2,[3,3,1],['r','r','r'])
-# model.fit(np.array([[1,1],[1,2],[3,1],[2,4],[4,5],[8,6],[9,7],[10,8]]),np.array([[0.1],[1.9],[2.4],[2.6],[3.0],[6.0],[8.0],[10.0]]),n_iter=100,loss='mse')
-# print(model.predict(np.array([[1,0],[13,12],[10,1],[17,18]])))
