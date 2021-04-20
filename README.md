@@ -12,4 +12,11 @@
 
     > It has three different activation functions: {relu , sigmoid , Identity}
 
+3. **CNN**
+
+    > CNN_Classification.py contains the code to classify images using CNN.
+    
+    > The code was copied from [Here](https://machinelearningmastery.com/how-to-develop-a-convolutional-neural-network-to-classify-photos-of-dogs-and-cats/)
+    
 **Answers for all the quetions are present in "question_QuestionNumber.md" files**
+
