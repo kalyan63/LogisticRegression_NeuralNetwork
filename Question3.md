@@ -2,25 +2,31 @@
 
 1. **Results for Vectorized Softmax on Digit dataset:**
 
-    > For Vectorized and batch size=5
+    > For Vectorized and batch size=100
 
-        > Accuracy for iteration=100 is: 0.7579972183588317
-        > Accuracy for iteration=500 is: 0.9068150208623088
-        > Accuracy for iteration=1000 is: 0.9374130737134909
-        > Accuracy for iteration=5000 is: 0.9624478442280946
-        > Accuracy for iteration=10000 is: 0.9763560500695411
+        > Accuracy for iteration=50 is: 0.9318497913769124
+        > Accuracy for iteration=500 is: 0.9749652294853964
+        > Accuracy for iteration=1000 is: 0.9735744089012517
+        > Accuracy for iteration=2000 is: 0.9749652294853964
+        > Accuracy for iteration=5000 is: 0.9749652294853964
 
 2. **Results for Autograd Softmax on Digit dataset:**
 
-    > For Vectorized and batch size=5
+    > For Vectorized and batch size=100
 
-        > Accuracy for iteration=100 is: 0.7579972183588317
-        > Accuracy for iteration=500 is: 0.9068150208623088
-        > Accuracy for iteration=1000 is: 0.9374130737134909
-        > Accuracy for iteration=5000 is: 0.9624478442280946
-        > Accuracy for iteration=10000 is: 0.9763560500695411
+        Accuracy for iteration=50 is: 0.9318497913769124
+        Accuracy for iteration=500 is: 0.9749652294853964
+        Accuracy for iteration=1000 is: 0.9735744089012517
+        Accuracy for iteration=2000 is: 0.9749652294853964
+        Accuracy for iteration=5000 is: 0.9749652294853964
 
-3. **Confusion Matrix:**
+3. **Stratified KFold results on Softmax**
+
+    > For k=4 folds, (iter=2000,batch=100):
+
+        > Accuracy for all folds: [0.9711111111111111, 0.9621380846325167, 0.9665924276169265, 0.9688195991091314]
+
+4. **Confusion Matrix:**
 
     > **Image of Confusion Matrix:** 
         
@@ -30,7 +36,7 @@
 
     > 6 and 0 was less confused
 
-4. **Plotting reduced features of digits**
+5. **Plotting reduced features of digits**
 
     >!['Reduced plot'](q3_pca.png)
 

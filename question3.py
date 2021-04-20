@@ -1,7 +1,5 @@
-from matplotlib import colors
 from LogisticRegression.SoftMax import Softmax 
 from matrix import *
-import pandas as pd
 import numpy as np
 from sklearn.datasets import load_digits
 from sklearn.preprocessing import MinMaxScaler
@@ -22,18 +20,18 @@ X_test=Digit_data.iloc[split_at:,:-1]
 y_test=Digit_data.iloc[split_at:,-1]
 
 # For Question 1 answers
-print("For Vectorized and batch size=5")
-for j in [100,500,1000,5000,10000]:
+print("For Vectorized and batch size=100")
+for j in [50,500,1000,2000,5000]:
     model=Softmax()
-    model.fit_vectorized(X_train,y_train,batch_size=5,n_iter=j)
+    model.fit_vectorized(X_train,y_train,batch_size=100,n_iter=j)
     y_hat=model.predict(X_test)
     print("\tAccuracy for iteration={} is: {}".format(j,accuracy(y_hat,y_test)))
 
 #For Autograd 
-print("For Autograd and batch size=5")
-for j in [100,500,1000,5000,10000]:
+print("For Autograd and batch size=100")
+for j in [50,500,1000,2000,5000]:
     model=Softmax()
-    model.fit_autograd(X_train,y_train,batch_size=5,n_iter=j)
+    model.fit_autograd(X_train,y_train,batch_size=100,n_iter=j)
     y_hat=model.predict(X_test)
     print("\tAccuracy for iteration={} is: {}".format(j,accuracy(y_hat,y_test)))
 

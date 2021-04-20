@@ -10,7 +10,7 @@
         > Accuracy for iteration=10000 is: 0.9692982456140351 
 
 2. **Result for Autograd Logistic Regression on Breast Cancer Data:**
-    >For Autograd and Batch size=300 and autograd (Just considered 6 features due to autograd limit)
+    >For Autograd and Batch size=300 and autograd
 
         > Accuracy for iteration=100 is: 0.6447368421052632
         > Accuracy for iteration=1000 is: 0.5219298245614035
@@ -18,7 +18,14 @@
         > Accuracy for iteration=10000 is: 0.9166666666666666
         > Accuracy for iteration=20000 is: 0.9342105263157895
 
-3. **Plot for Decision boundry for breast cancer data**
+3. **KFold Cross validation results**
+
+    > For k=3 folds, (iter=2000,batch=100): 
+
+        > Accuracy for all folds is: [0.9789473684210527, 0.9736842105263158, 0.9788359788359788]
+        
+
+4. **Plot for Decision boundry for breast cancer data**
     > Using vectorized: 
         > Accuracy (iter=10000,batch=200) is : **0.89**
         > !['Image of vec'](q1a1.png)
@@ -27,7 +34,7 @@
         > Accuracy (iter=30000,batch=300) is :  **0.794**
         > !['Image'](q1b1.png)
 
-4. **Plot for Decision boundry for iris data on Sepal and Petal width**
+5. **Plot for Decision boundry for iris data on Sepal and Petal width**
     
     > Accuarcy for split = 0.6 (Train set) is: **0.93** and **0.984**
 
