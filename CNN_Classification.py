@@ -72,7 +72,7 @@ def run_test_NOaug(model_p, f_name):
 		class_mode='binary', target_size=(200, 200))
 	# fit model
 	history = model.fit(train_it, steps_per_epoch=len(train_it),
-		validation_data=test_it, validation_steps=len(test_it), epochs=10, verbose=0)
+		validation_data=test_it, validation_steps=len(test_it), epochs=20, verbose=0)
 	# evaluate model
 	_, acc = model.evaluate(test_it, steps=len(test_it), verbose=0)
 	print('> %.3f' % (acc * 100.0))
@@ -93,7 +93,7 @@ def run_test_WithAug(model_a,f_name):
 		class_mode='binary', batch_size=64, target_size=(200, 200))
 	# fit model
 	history = model.fit_generator(train_it, steps_per_epoch=len(train_it),
-		validation_data=test_it, validation_steps=len(test_it), epochs=50, verbose=0)
+		validation_data=test_it, validation_steps=len(test_it), epochs=20, verbose=0)
 	# evaluate model
 	_, acc = model.evaluate_generator(test_it, steps=len(test_it), verbose=0)
 	print('> %.3f' % (acc * 100.0))
@@ -116,7 +116,7 @@ def run_test_Transfer(model_x,f_name):
 		class_mode='binary', target_size=(200, 200))
 	# fit model
 	history = model.fit_generator(train_it, steps_per_epoch=len(train_it),
-		validation_data=test_it, validation_steps=len(test_it), epochs=10, verbose=1)
+		validation_data=test_it, validation_steps=len(test_it), epochs=5, verbose=1)
 	# evaluate model
 	_, acc = model.evaluate_generator(test_it, steps=len(test_it), verbose=0)
 	print('> %.3f' % (acc * 100.0))

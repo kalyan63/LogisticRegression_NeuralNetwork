@@ -6,10 +6,16 @@
 
     >!['VGG1'](VGG1_plot.png)
 
+    > Accuracy: 95 % (epochs=20)
+
 2. **VGG1 graph with Data Augmentation:**
 
     >!['VGG2'](VGG_with_Aug_plot.png)
 
+    > Accuracy: 90%  (epochs=20)
+
 3. **Transfer Learning:**
 
     >!['Transfer'](Transfer_plot.png)
+
+    > Accuracy: 100%  (epoch=5)
