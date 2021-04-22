@@ -6,6 +6,10 @@
 
     >!['VGG1'](VGG1_plot.png)
 
-2. **VGG2 graph:**
+2. **VGG1 graph with Data Augmentation:**
 
-    >!['VGG2'](VGG2_plot.png)
+    >!['VGG2'](VGG_with_Aug_plot.png)
+
+3. **Transfer Learning:**
+
+    >!['Transfer'](Transfer_plot.png)
