@@ -1,6 +1,6 @@
 ## Here we use CNN to classify images of category Computer and Humans in Images folder
 
-###  The graph for the Loss and Accuracy for VGG1 and VGG2 are: 
+###  The graph for the Loss and Accuracy for VGG1 with and without Augmentation and Transfer Learning are: 
 
 1. **VGG1 graph:**
 
